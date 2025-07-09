@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Лайки</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#like-button').click(function() {
+        $.ajax({
+          url: '/like/',
+          type: 'POST',
+          success: function(response) {
+            $('#like-count').text(response.likes);
+          },
+          error: function(xhr, status, error) {
+            console.error(error);
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Страница с лайками</h1>
+  <p id="like-count">Количество лайков: 0</p>
+  <button id="like-button">Поставить лайк</button>
+</body>
+</html>
